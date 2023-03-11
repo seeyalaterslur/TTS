@@ -1,5 +1,6 @@
 package edu.uksw.pam.tts
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -21,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -48,6 +50,7 @@ class SignUpActivity : ComponentActivity() {
 
 @Composable
 fun SignUpScreen() {
+    val context = LocalContext.current
     var firstName by remember { mutableStateOf("") }
     var lastName by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
@@ -161,7 +164,9 @@ fun SignUpScreen() {
                 }
 
                 TextButton(
-                    onClick = { /* Handle login text button click */ },
+                    onClick = {
+                        val intent = Intent(context, SignUpActivity::class.java)
+                        context.startActivity(intent) },
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Text(text = "Already have an account? Log in here")
