@@ -1,9 +1,8 @@
-package edu.uksw.pam.tts
+package edu.uksw.pam.tts.ui.screens
 
+import android.content.Context
 import android.content.Intent
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -13,6 +12,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -24,33 +24,28 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import edu.uksw.pam.tts.SignUpActivity
-import edu.uksw.pam.tts.ui.theme.TTSTheme
+import edu.uksw.pam.tts.contract.SignUpContract
 
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            TTSTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    LoginScreen()
-                }
-            }
-        }
-    }
+internal fun doAuth(
+    email: String,
+    password: String,
+): Boolean {
+    return (password.equals("admin"))
 }
 
 @Composable
 fun LoginScreen() {
     val context = LocalContext.current
+    val savedEmail = rememberSaveable{ mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var rememberMe by remember { mutableStateOf(false) }
+
+    val getEmailFromSignUpForm = rememberLauncherForActivityResult(
+        contract = SignUpContract(),
+        onResult = { email=it!!}
+        )
 
     CompositionLocalProvider(LocalContentColor provides MaterialTheme.colors.onSurface) {
         Box(
@@ -115,7 +110,7 @@ fun LoginScreen() {
                         )
 
                         Button(
-                            onClick = { /* Handle login button click */ },
+                            onClick = {  },
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .height(56.dp),
@@ -160,8 +155,8 @@ fun LoginScreen() {
 
 
 
-@Preview(showBackground = true)
-@Composable
-fun LoginScreenPreview() {
-    LoginScreen()
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun LoginScreenPreview() {
+//    LoginScreen()
+//}
