@@ -23,6 +23,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import edu.uksw.pam.tts.ui.screens.BottomNavigationMainScreenView
 import edu.uksw.pam.tts.ui.theme.TTSTheme
 
 class HomeActivity : AppCompatActivity() {
@@ -36,7 +37,7 @@ class HomeActivity : AppCompatActivity() {
                     color = MaterialTheme.colors.background
                 ) {
                     val email = getIntent().getStringExtra("email") ?: ""
-
+                    BottomNavigationMainScreenView()
                 }
             }
         }

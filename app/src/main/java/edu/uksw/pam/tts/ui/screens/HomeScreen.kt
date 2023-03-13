@@ -2,9 +2,12 @@ package edu.uksw.pam.tts.ui.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -32,7 +35,7 @@ import edu.uksw.pam.tts.R
 @Composable
 fun LandingPage(
 ){
-
+    val scrollState = rememberScrollState()
     TopAppBar(
         title = {
             Text(
@@ -62,6 +65,7 @@ fun LandingPage(
     Column(
         modifier = Modifier
             .padding(0.dp,50.dp)
+            .scrollable(state = scrollState, orientation = Orientation.Vertical)
     ) {
         Column(
             modifier = Modifier
