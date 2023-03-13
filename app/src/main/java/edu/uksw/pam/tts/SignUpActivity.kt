@@ -165,7 +165,7 @@ fun SignUpScreen() {
 
                 TextButton(
                     onClick = {
-                        val intent = Intent(context, SignUpActivity::class.java)
+                        val intent = Intent(context, MainActivity::class.java)
                         context.startActivity(intent) },
                     modifier = Modifier.fillMaxWidth()
                 ) {

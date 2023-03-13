@@ -24,6 +24,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import edu.uksw.pam.tts.HomeActivity
 import edu.uksw.pam.tts.SignUpActivity
 import edu.uksw.pam.tts.contract.SignUpContract
 
@@ -110,7 +111,9 @@ fun LoginScreen() {
                         )
 
                         Button(
-                            onClick = {  },
+                            onClick = {
+                                val intent = Intent(context, HomeActivity::class.java)
+                                context.startActivity(intent) },
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .height(56.dp),
