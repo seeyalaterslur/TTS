@@ -1,8 +1,10 @@
 package edu.uksw.pam.tts
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.ContactsContract.CommonDataKinds.Email
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
@@ -45,6 +47,12 @@ class SignUpActivity : ComponentActivity() {
                 }
             }
         }
+    }
+    private fun sendEmailBackToLogin(email : String?)
+    {
+        val result = Intent().putExtra("email", email)
+        setResult(Activity.RESULT_OK, result)
+        finish()
     }
 }
 

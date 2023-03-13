@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.dp
 import edu.uksw.pam.tts.SignUpActivity
 
 @Composable
-fun SignUpScreen() {
+fun SignUpScreen( btnOnClickAction: (String?) -> Unit) {
     val context = LocalContext.current
     var firstName by remember { mutableStateOf("") }
     var lastName by remember { mutableStateOf("") }
@@ -130,7 +130,9 @@ fun SignUpScreen() {
                 )
 
                 Button(
-                    onClick = { /* Handle signup button click */ },
+                    onClick = {
+                                btnOnClickAction(email)
+                              },
                     modifier = Modifier.fillMaxWidth(),
                     colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.primary),
                     shape = MaterialTheme.shapes.medium

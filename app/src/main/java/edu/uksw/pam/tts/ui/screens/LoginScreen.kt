@@ -112,8 +112,15 @@ fun LoginScreen() {
 
                         Button(
                             onClick = {
-                                val intent = Intent(context, HomeActivity::class.java)
-                                context.startActivity(intent) },
+                                    val isAuthenticated = doAuth(email, password)
+                                if (isAuthenticated){
+                                    context.startActivity(
+                                        Intent(context, HomeActivity::class.java)
+                                            .apply {
+                                                putExtra("email", email)
+                                            }
+                                    )
+                                } },
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .height(56.dp),
@@ -127,7 +134,7 @@ fun LoginScreen() {
 
                         TextButton(
                             onClick = {
-                                val intent = Intent(context, SignUpActivity::class.java)
+                                val intent = Intent(context, HomeActivity::class.java)
                                 context.startActivity(intent)
                             },
                             modifier = Modifier.align(Alignment.End)
